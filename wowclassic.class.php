@@ -27,7 +27,7 @@ if(!class_exists('wowclassic')) {
 	class wowclassic extends game_generic {
 
 		protected static $apiLevel	= 20;
-		public $version				= '1.0.0';
+		public $version				= '1.0.1';
 		protected $this_game		= 'wowclassic';
 		protected $types			= array('factions', 'races', 'classes', 'talents', 'filters', 'roles', 'classrole', 'professions', 'chartooltip');	// which information are stored?
 		protected $classes			= array();
