@@ -194,7 +194,7 @@ if(!class_exists('wowhead')) {
 			
 			$url = 'classic';
 
-			$item['link'] = 'https://'.$url.'.wowhead.com/item='.$item['id'].'&power&bonus='.implode(':', $myItemData['bonus']).'&upgd='.$myItemData['upgd_id'].'&lvl='.$myItemData['lvl'].'&ench='.$myItemData['ench'].'&gems='.implode(',',$myItemData['gems']);
+			$item['link'] = 'https://'.$url.'.wowhead.com/tooltip/item/'.$item['id'].'&json&power&bonus='.implode(':', $myItemData['bonus']).'&upgd='.$myItemData['upgd_id'].'&lvl='.$myItemData['lvl'].'&ench='.$myItemData['ench'].'&gems='.implode(',',$myItemData['gems']);
 			
 			$this->pdl->log('infotooltip', 'fetch item-data from: '.$item['link']);
 			$someJS = $this->puf->fetch($item['link'], array('Cookie: cookieLangId="'.$lang.'";'));
