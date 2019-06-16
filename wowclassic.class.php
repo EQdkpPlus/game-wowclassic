@@ -46,121 +46,629 @@ if(!class_exists('wowclassic')) {
 		);
 
 		protected $class_dependencies = array(
-			array(
-				'name'		=> 'faction',
-				'type'		=> 'factions',
-				'admin' 	=> true,
-				'decorate'	=> false,
-				'parent'	=> false,
-			),
-			array(
-				'name'		=> 'race',
-				'type'		=> 'races',
-				'admin'		=> false,
-				'decorate'	=> true,
-				'parent'	=> array(
-					'faction' => array(
-						'alliance'	=> array(0,1,2,3,4),
-						'horde'		=> array(0,5,6,7,8),
-					),
+				array(
+						'name'		=> 'faction',
+						'type'		=> 'factions',
+						'admin' 	=> true,
+						'decorate'	=> false,
+						'parent'	=> false,
 				),
-			),
-			array(
-				'name'		=> 'class',
-				'type'		=> 'classes',
-				'admin'		=> false,
-				'decorate'	=> true,
-				'primary'	=> true,
-				'colorize'	=> true,
-				'roster'	=> true,
-				'recruitment' => true,
-				'parent'	=> array(
-					'race' => array(
-						0 	=> 'all',							// Unknown
-						1 	=> array(3,4,6,7,9,10),		// Gnome
-						2 	=> array(3,4,5,6,7,9,10),		// Human
-						3 	=> array(3,4,5,6,7,8,9,10),	// Dwarf
-						4 	=> array(2,3,4,6,7,10),		// Night Elf
-						5 	=> array(2,3,4,6,7,8,9,10),	// Troll
-						6 	=> array(3,4,6,7,9,10),		// Undead
-						7 	=> array(3,4,7,8,9,10),		// Orc
-						8 	=> array(2,3,5,6,8,10),		// Tauren
-					),
+				array(
+						'name'		=> 'race',
+						'type'		=> 'races',
+						'admin'		=> false,
+						'decorate'	=> true,
+						'parent'	=> array(
+								'faction' => array(
+										'alliance'	=> array(0,1,2,3,4,9,11,13,16,17,18,21),
+										'horde'		=> array(0,5,6,7,8,10,12,13,14,15,19,20),
+								),
+						),
 				),
-			),
-			array(
-				'name'		=> 'talent1',
-				'type'		=> 'talents',
-				'admin'		=> false,
-				'decorate'	=> false,
-				'recruitment' => true,
-				'parent'	=> array(
-					'class' => array(
-						0 	=> 'all',			// Unknown
-						2 	=> array(3,4,5,6),	// Druid
-						3 	=> array(7,8,9),	// Hunter
-						4 	=> array(10,11,12),	// Mage
-						5 	=> array(13,14,15),	// Paladin
-						6 	=> array(16,17,18),	// Priest
-						7 	=> array(19,20,21),	// Rogue
-						8 	=> array(22,23,24),	// Shaman
-						9 	=> array(25,26,27),	// Warlock
-						10 	=> array(28,29,30),	// Warrior
-					),
+				array(
+						'name'		=> 'class',
+						'type'		=> 'classes',
+						'admin'		=> false,
+						'decorate'	=> true,
+						'primary'	=> true,
+						'colorize'	=> true,
+						'roster'	=> true,
+						'recruitment' => true,
+						'parent'	=> array(
+								'race' => array(
+										0	=> 'all',							// Unknown
+										1	=> array(1,3,4,6,7,9,10,11),		// Gnome
+										2	=> array(1,3,4,5,6,7,9,10,11),		// Human
+										3	=> array(1,3,4,5,6,7,8,9,10,11),	// Dwarf
+										4	=> array(1,2,3,4,6,7,10,11,12),		// Night Elf
+										5	=> array(1,2,3,4,6,7,8,9,10,11),	// Troll
+										6	=> array(1,3,4,6,7,9,10,11),		// Undead
+										7	=> array(1,3,4,7,8,9,10,11),		// Orc
+										8	=> array(1,2,3,5,6,8,10,11),		// Tauren
+										9	=> array(1,3,4,5,6,8,10,11),		// Draenai
+										10	=> array(1,3,4,5,6,7,9,10,11,12),	// Blood Elf
+										11	=> array(1,2,3,4,6,7,9,10),			// Worgen
+										12	=> array(1,3,4,6,7,8,9,10),			// Goblin
+										13	=> array(3,4,6,7,8,10,11),			// Pandaren
+										14	=> array(3,4,11,6,7,9,10),			// Nightborne
+										15	=> array(2,3,11,8,10),				// Highmountain Tauren
+										16	=> array(3,4,11,6,7,9,10), 			// Void Elf
+										17	=> array(3,4,5,6,10), 				// Lightforged Draenei
+										18	=> array(3,5,6,7,8,9,10,11),		// Dark iron Dwarf
+										19	=> array(3,4,11,6,7,8,10), 			// Mag'har Orc
+										20	=> array(2,3,4,11,5,6,7,8,10),		// Zandalari Troll
+										21	=> array(2,3,4,11,6,7,8,10), 		// Kul Tiran
+								),
+						),
 				),
-			),
-			array(
-				'name'		=> 'talent2',
-				'type'		=> 'talents',
-				'admin'		=> false,
-				'decorate'	=> false,
-				'parent'	=> array(
-					'class' => array(
-						0 	=> 'all',			// Unknown
-						2 	=> array(3,4,5,6),	// Druid
-						3 	=> array(7,8,9),	// Hunter
-						4 	=> array(10,11,12),	// Mage
-						5 	=> array(13,14,15),	// Paladin
-						6 	=> array(16,17,18),	// Priest
-						7 	=> array(19,20,21),	// Rogue
-						8 	=> array(22,23,24),	// Shaman
-						9 	=> array(25,26,27),	// Warlock
-						10 	=> array(28,29,30),	// Warrior
-					),
+				array(
+						'name'		=> 'talent1',
+						'type'		=> 'talents',
+						'admin'		=> false,
+						'decorate'	=> false,
+						'recruitment' => true,
+						'parent'	=> array(
+								'class' => array(
+										0	=> 'all',			// Unknown
+										1	=> array(0,1,2),	// Death Knight
+										2	=> array(3,4,5,6),	// Druid
+										3	=> array(7,8,9),	// Hunter
+										4	=> array(10,11,12),	// Mage
+										5	=> array(13,14,15),	// Paladin
+										6	=> array(16,17,18),	// Priest
+										7	=> array(19,20,21),	// Rogue
+										8	=> array(22,23,24),	// Shaman
+										9	=> array(25,26,27),	// Warlock
+										10	=> array(28,29,30),	// Warrior
+										11	=> array(31,32,33),	// Monk
+										12	=> array(34,35),	// demon hunter
+								),
+						),
 				),
-			),
+				array(
+						'name'		=> 'talent2',
+						'type'		=> 'talents',
+						'admin'		=> false,
+						'decorate'	=> false,
+						'parent'	=> array(
+								'class' => array(
+										0	=> 'all',			// Unknown
+										1	=> array(0,1,2),	// Death Knight
+										2	=> array(3,4,5,6),	// Druid
+										3	=> array(7,8,9),	// Hunter
+										4	=> array(10,11,12),	// Mage
+										5	=> array(13,14,15),	// Paladin
+										6	=> array(16,17,18),	// Priest
+										7	=> array(19,20,21),	// Rogue
+										8	=> array(22,23,24),	// Shaman
+										9	=> array(25,26,27),	// Warlock
+										10	=> array(28,29,30),	// Warrior
+										11	=> array(31,32,33),	// Monk
+										12	=> array(34,35),	// demon hunter
+								),
+						),
+				),
 		);
+		
+		public function get_class_dependencies() {
+			$strExtension = $this->config->get('uc_wow_extension');
+			
+			if(!$strExtension || $strExtension == ""){
+				return $this->class_dependencies;
+			}
+			
+			if($strExtension == 'leg'){
+				return array(
+						array(
+								'name'		=> 'faction',
+								'type'		=> 'factions',
+								'admin' 	=> true,
+								'decorate'	=> false,
+								'parent'	=> false,
+						),
+						array(
+								'name'		=> 'race',
+								'type'		=> 'races',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'parent'	=> array(
+										'faction' => array(
+												'alliance'	=> array(0,1,2,3,4,9,11,13),
+												'horde'		=> array(0,5,6,7,8,10,12,13),
+										),
+								),
+						),
+						array(
+								'name'		=> 'class',
+								'type'		=> 'classes',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'primary'	=> true,
+								'colorize'	=> true,
+								'roster'	=> true,
+								'recruitment' => true,
+								'parent'	=> array(
+										'race' => array(
+												0	=> 'all',							// Unknown
+												1	=> array(1,3,4,6,7,9,10,11),		// Gnome
+												2	=> array(1,3,4,5,6,7,9,10,11),		// Human
+												3	=> array(1,3,4,5,6,7,8,9,10,11),	// Dwarf
+												4	=> array(1,2,3,4,6,7,10,11,12),		// Night Elf
+												5	=> array(1,2,3,4,6,7,8,9,10,11),	// Troll
+												6	=> array(1,3,4,6,7,9,10,11),		// Undead
+												7	=> array(1,3,4,7,8,9,10,11),		// Orc
+												8	=> array(1,2,3,5,6,8,10,11),		// Tauren
+												9	=> array(1,3,4,5,6,8,10,11),		// Draenai
+												10	=> array(1,3,4,5,6,7,9,10,11,12),	// Blood Elf
+												11	=> array(1,2,3,4,6,7,9,10),			// Worgen
+												12	=> array(1,3,4,6,7,8,9,10),			// Goblin
+												13	=> array(3,4,6,7,8,10,11),			// Pandaren
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent1',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'recruitment' => true,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+												11	=> array(31,32,33),	// Monk
+												12	=> array(34,35),	// demon hunter
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent2',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+												11	=> array(31,32,33),	// Monk
+												12	=> array(34,35),	// demon hunter
+										),
+								),
+						),
+				);
+			}
+			
+			if($strExtension == 'wod' || $strExtension == 'mop'){
+				return array(
+						array(
+								'name'		=> 'faction',
+								'type'		=> 'factions',
+								'admin' 	=> true,
+								'decorate'	=> false,
+								'parent'	=> false,
+						),
+						array(
+								'name'		=> 'race',
+								'type'		=> 'races',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'parent'	=> array(
+										'faction' => array(
+												'alliance'	=> array(0,1,2,3,4,9,11,13),
+												'horde'		=> array(0,5,6,7,8,10,12,13),
+										),
+								),
+						),
+						array(
+								'name'		=> 'class',
+								'type'		=> 'classes',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'primary'	=> true,
+								'colorize'	=> true,
+								'roster'	=> true,
+								'recruitment' => true,
+								'parent'	=> array(
+										'race' => array(
+												0	=> 'all',							// Unknown
+												1	=> array(1,3,4,6,7,9,10,11),		// Gnome
+												2	=> array(1,3,4,5,6,7,9,10,11),		// Human
+												3	=> array(1,3,4,5,6,7,8,9,10,11),	// Dwarf
+												4	=> array(1,2,3,4,6,7,10,11),		// Night Elf
+												5	=> array(1,2,3,4,6,7,8,9,10,11),	// Troll
+												6	=> array(1,3,4,6,7,9,10,11),		// Undead
+												7	=> array(1,3,4,7,8,9,10,11),		// Orc
+												8	=> array(1,2,3,5,6,8,10,11),		// Tauren
+												9	=> array(1,3,4,5,6,8,10,11),		// Draenai
+												10	=> array(1,3,4,5,6,7,9,10,11),	// Blood Elf
+												11	=> array(1,2,3,4,6,7,9,10),			// Worgen
+												12	=> array(1,3,4,6,7,8,9,10),			// Goblin
+												13	=> array(3,4,6,7,8,10,11),			// Pandaren
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent1',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'recruitment' => true,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+												11	=> array(31,32,33),	// Monk
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent2',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+												11	=> array(31,32,33),	// Monk
+										),
+								),
+						),
+				);
+			}
+			
+			if($strExtension == 'cata'){
+				return array(
+						array(
+								'name'		=> 'faction',
+								'type'		=> 'factions',
+								'admin' 	=> true,
+								'decorate'	=> false,
+								'parent'	=> false,
+						),
+						array(
+								'name'		=> 'race',
+								'type'		=> 'races',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'parent'	=> array(
+										'faction' => array(
+												'alliance'	=> array(0,1,2,3,4,9,11),
+												'horde'		=> array(0,5,6,7,8,10,12),
+										),
+								),
+						),
+						array(
+								'name'		=> 'class',
+								'type'		=> 'classes',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'primary'	=> true,
+								'colorize'	=> true,
+								'roster'	=> true,
+								'recruitment' => true,
+								'parent'	=> array(
+										'race' => array(
+												0	=> 'all',							// Unknown
+												1	=> array(1,3,4,6,7,9,10),		// Gnome
+												2	=> array(1,3,4,5,6,7,9,10),		// Human
+												3	=> array(1,3,4,5,6,7,8,9,10),	// Dwarf
+												4	=> array(1,2,3,4,6,7,10),		// Night Elf
+												5	=> array(1,2,3,4,6,7,8,9,10),	// Troll
+												6	=> array(1,3,4,6,7,9,10),		// Undead
+												7	=> array(1,3,4,7,8,9,10),		// Orc
+												8	=> array(1,2,3,5,6,8,10),		// Tauren
+												9	=> array(1,3,4,5,6,8,10),		// Draenai
+												10	=> array(1,3,4,5,6,7,9,10),		// Blood Elf
+												11	=> array(1,2,3,4,6,7,9,10),			// Worgen
+												12	=> array(1,3,4,6,7,8,9,10),			// Goblin
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent1',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'recruitment' => true,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent2',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+										),
+								),
+						),
+				);
+			}
+			
+			if($strExtension == 'wotlk'){
+				return array(
+						array(
+								'name'		=> 'faction',
+								'type'		=> 'factions',
+								'admin' 	=> true,
+								'decorate'	=> false,
+								'parent'	=> false,
+						),
+						array(
+								'name'		=> 'race',
+								'type'		=> 'races',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'parent'	=> array(
+										'faction' => array(
+												'alliance'	=> array(0,1,2,3,4,9),
+												'horde'		=> array(0,5,6,7,8,10),
+										),
+								),
+						),
+						array(
+								'name'		=> 'class',
+								'type'		=> 'classes',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'primary'	=> true,
+								'colorize'	=> true,
+								'roster'	=> true,
+								'recruitment' => true,
+								'parent'	=> array(
+										'race' => array(
+												0	=> 'all',							// Unknown
+												1	=> array(1,3,4,6,7,9,10),		// Gnome
+												2	=> array(1,3,4,5,6,7,9,10),		// Human
+												3	=> array(1,3,4,5,6,7,8,9,10),	// Dwarf
+												4	=> array(1,2,3,4,6,7,10),		// Night Elf
+												5	=> array(1,2,3,4,6,7,8,9,10),	// Troll
+												6	=> array(1,3,4,6,7,9,10),		// Undead
+												7	=> array(1,3,4,7,8,9,10),		// Orc
+												8	=> array(1,2,3,5,6,8,10),		// Tauren
+												9	=> array(1,3,4,5,6,8,10),		// Draenai
+												10	=> array(1,3,4,5,6,7,9,10),		// Blood Elf
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent1',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'recruitment' => true,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent2',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												1	=> array(0,1,2),	// Death Knight
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+										),
+								),
+						),
+				);
+			}
+			
+			if($strExtension == 'tbc'){
+				return array(
+						array(
+								'name'		=> 'faction',
+								'type'		=> 'factions',
+								'admin' 	=> true,
+								'decorate'	=> false,
+								'parent'	=> false,
+						),
+						array(
+								'name'		=> 'race',
+								'type'		=> 'races',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'parent'	=> array(
+										'faction' => array(
+												'alliance'	=> array(0,1,2,3,4,9),
+												'horde'		=> array(0,5,6,7,8,10),
+										),
+								),
+						),
+						array(
+								'name'		=> 'class',
+								'type'		=> 'classes',
+								'admin'		=> false,
+								'decorate'	=> true,
+								'primary'	=> true,
+								'colorize'	=> true,
+								'roster'	=> true,
+								'recruitment' => true,
+								'parent'	=> array(
+										'race' => array(
+												0	=> 'all',							// Unknown
+												1	=> array(3,4,6,7,9,10),		// Gnome
+												2	=> array(3,4,5,6,7,9,10),		// Human
+												3	=> array(3,4,5,6,7,8,9,10),	// Dwarf
+												4	=> array(2,3,4,6,7,10),		// Night Elf
+												5	=> array(2,3,4,6,7,8,9,10),	// Troll
+												6	=> array(3,4,6,7,9,10),		// Undead
+												7	=> array(3,4,7,8,9,10),		// Orc
+												8	=> array(2,3,5,6,8,10),		// Tauren
+												9	=> array(3,4,5,6,8,10),		// Draenai
+												10	=> array(3,4,5,6,7,9,10),		// Blood Elf
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent1',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'recruitment' => true,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+										),
+								),
+						),
+						array(
+								'name'		=> 'talent2',
+								'type'		=> 'talents',
+								'admin'		=> false,
+								'decorate'	=> false,
+								'parent'	=> array(
+										'class' => array(
+												0	=> 'all',			// Unknown
+												2	=> array(3,4,5,6),	// Druid
+												3	=> array(7,8,9),	// Hunter
+												4	=> array(10,11,12),	// Mage
+												5	=> array(13,14,15),	// Paladin
+												6	=> array(16,17,18),	// Priest
+												7	=> array(19,20,21),	// Rogue
+												8	=> array(22,23,24),	// Shaman
+												9	=> array(25,26,27),	// Warlock
+												10	=> array(28,29,30),	// Warrior
+										),
+								),
+						),
+				);
+			}
+			
+			
+		}
+		
 
 		public $default_roles = array(
-			1	=> array(2, 5, 6, 8),			// healer
-			2	=> array(2, 5, 10),				// tank
-			3	=> array(2, 3, 4, 6, 8, 9),	// dd distance
-			4	=> array(2, 3, 5, 7, 8, 10)	// dd near
+				1	=> array(2, 5, 6, 8, 11),				// healer
+				2	=> array(1, 2, 5, 10, 11, 12),			// tank
+				3	=> array(2, 3, 4, 6, 8, 9),				// dd distance
+				4	=> array(1, 2, 3, 5, 7, 8, 10, 11, 12)	// dd near
 		);
-
+		
 		public $default_classrole = array(
-			2	=> 4,	// Druid
-			3	=> 3,	// Hunter
-			4	=> 3,	// Mage
-			5	=> 4,	// Paladin
-			6	=> 1,	// Priest
-			7	=> 4,	// Rogue
-			8	=> 4,	// Shaman
-			9	=> 3,	// Warlock
-			10	=> 1,	// Warrior
+				1	=> 4,	// Death Knight
+				2	=> 4,	// Druid
+				3	=> 3,	// Hunter
+				4	=> 3,	// Mage
+				5	=> 4,	// Paladin
+				6	=> 1,	// Priest
+				7	=> 4,	// Rogue
+				8	=> 4,	// Shaman
+				9	=> 3,	// Warlock
+				10	=> 1,	// Warrior
+				11	=> 4,	// Monk
+				12	=> 2,	// demon hunter
 		);
-
+		
 		// source http://wow.gamepedia.com/Class_colors
 		protected $class_colors = array(
-			2	=> '#FF7D0A',	// Druid
-			3	=> '#ABD473',	// Hunter
-			4	=> '#69CCF0',	// Mage
-			5	=> '#F58CBA',	// Paladin
-			6	=> '#FFFFFF',	// Priest
-			7	=> '#FFF569',	// Rogue
-			8	=> '#0070DE',	// Shaman
-			9	=> '#9482C9',	// Warlock
-			10	=> '#C79C6E',	// Warrior
+				1	=> '#C41F3B',	// Death Knight
+				2	=> '#FF7D0A',	// Druid
+				3	=> '#ABD473',	// Hunter
+				4	=> '#69CCF0',	// Mage
+				5	=> '#F58CBA',	// Paladin
+				6	=> '#FFFFFF',	// Priest
+				7	=> '#FFF569',	// Rogue
+				8	=> '#0070DE',	// Shaman
+				9	=> '#9482C9',	// Warlock
+				10	=> '#C79C6E',	// Warrior
+				11	=> '#00FF96',	// Monk
+				12	=> '#A330C9',	// demon hunter
 		);
 
 		protected $glang		= array();
@@ -339,7 +847,36 @@ if(!class_exists('wowclassic')) {
 		}
 
 		public function admin_settings() {
-			return array();
+				$settingsdata_admin = array(
+						'uc_wow_extension'	=> array(
+								'lang'		=> 'uc_wow_extension',
+								'type' 		=> 'dropdown',
+								'options'	=> array('' => 'Classic', 'tbc' => 'The Burning Crusade', 'wotlk' => 'Wrath of the Lich King', 'cata' => 'Cataclysm', 'mop' => 'Mists of Pandaria', 'wod' => 'Warlords of Draenor', 'leg' => 'Legion'),
+						),
+				);
+				return $settingsdata_admin;
+		}
+		
+		protected function load_type($type, $langs){
+			foreach($langs as $lang) {
+				$this->load_lang_file($lang);
+				if(!isset($this->$type)) $this->$type = array();
+				if (isset($this->lang_file[$lang][$type])) {
+					if($type == 'races' || $type == 'classes'){
+						$strExtension = $this->config->get('uc_wow_extension');
+
+						if(!$strExtension || $strExtension == ""){
+							$this->{$type}[$lang] = $this->lang_file[$lang][$type];
+							return;
+						}
+						
+						$this->{$type}[$lang] = $this->lang_file[$lang][$type.'_'.$strExtension];
+
+					} else {
+						$this->{$type}[$lang] = $this->lang_file[$lang][$type];
+					}
+				}
+			}
 		}
 
 		######################################################################
