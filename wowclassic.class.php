@@ -60,7 +60,7 @@ if(!class_exists('wowclassic')) {
 						'decorate'	=> true,
 						'parent'	=> array(
 								'faction' => array(
-										'alliance'	=> array(0,1,2,3,4,),
+										'alliance'	=> array(0,1,2,3,4),
 										'horde'		=> array(0,5,6,7,8),
 								),
 						),
@@ -85,7 +85,6 @@ if(!class_exists('wowclassic')) {
 										6	=> array(3,4,6,7,9,10),		// Undead
 										7	=> array(3,4,7,8,9,10),		// Orc
 										8	=> array(2,3,5,6,8,10),		// Tauren
-
 								),
 						),
 				),
@@ -134,8 +133,28 @@ if(!class_exists('wowclassic')) {
 		
 		public function get_class_dependencies() {
 			$strExtension = $this->config->get('uc_wow_extension');
+			$strFaction = $this->config->get('faction');
 			
 			if(!$strExtension || $strExtension == ""){
+				if($strFaction == 'horde'){
+					//Without Paladin
+					$this->class_dependencies[2]['parent']['race'] = array(
+							0	=> 'all',							// Unknown
+							1	=> array(3,4,6,7,9,10),		// Gnome
+							2	=> array(3,4,6,7,9,10),		// Human
+							3	=> array(3,4,6,7,8,9,10),	// Dwarf
+							4	=> array(2,3,4,6,7,10),		// Night Elf
+							5	=> array(2,3,4,6,7,8,9,10),	// Troll
+							6	=> array(3,4,6,7,9,10),		// Undead
+							7	=> array(3,4,7,8,9,10),		// Orc
+							8	=> array(2,3,6,8,10),		// Tauren
+					);
+					
+					unset($this->class_dependencies[3]['parent']['class'][5]);
+					unset($this->class_dependencies[4]['parent']['class'][5]);
+				}
+				
+				
 				return $this->class_dependencies;
 			}
 			
@@ -943,15 +962,23 @@ if(!class_exists('wowclassic')) {
 		}
 		
 		protected function load_type($type, $langs){
+			$strFaction = $this->config->get('faction');
+			$strExtension = $this->config->get('uc_wow_extension');
 			foreach($langs as $lang) {
 				$this->load_lang_file($lang);
 				if(!isset($this->$type)) $this->$type = array();
 				if (isset($this->lang_file[$lang][$type])) {
 					if($type == 'races' || $type == 'classes'){
 						$strExtension = $this->config->get('uc_wow_extension');
+						
 
 						if(!$strExtension || $strExtension == ""){
 							$this->{$type}[$lang] = $this->lang_file[$lang][$type];
+							
+							if($strFaction == 'horde'){
+								unset($this->lang_file[$lang]['classes'][5]);
+							}
+							
 							return;
 						}
 						
