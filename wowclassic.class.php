@@ -994,6 +994,9 @@ if(!class_exists('wowclassic')) {
 							if($strFaction == 'horde'){
 								unset($this->lang_file[$lang]['classes'][5]);
 							}
+							if($strFaction == 'alliance'){
+								unset($this->lang_file[$lang]['classes'][8]);
+							}
 							
 							return;
 						}
