@@ -140,20 +140,36 @@ if(!class_exists('wowclassic')) {
 					//Without Paladin
 					$this->class_dependencies[2]['parent']['race'] = array(
 							0	=> 'all',							// Unknown
-							1	=> array(3,4,6,7,9,10),		// Gnome
-							2	=> array(3,4,6,7,9,10),		// Human
-							3	=> array(3,4,6,7,8,9,10),	// Dwarf
-							4	=> array(2,3,4,6,7,10),		// Night Elf
-							5	=> array(2,3,4,6,7,8,9,10),	// Troll
-							6	=> array(3,4,6,7,9,10),		// Undead
-							7	=> array(3,4,7,8,9,10),		// Orc
-							8	=> array(2,3,6,8,10),		// Tauren
+							1	=> array(4,7,9,10),		// Gnome
+							2	=> array(4,6,7,9,10),		// Human
+							3	=> array(3,6,7,10),	// Dwarf
+							4	=> array(2,3,6,7,10),		// Night Elf
+							5	=> array(3,4,6,7,8,10),	// Troll
+							6	=> array(4,6,7,9,10),		// Undead
+							7	=> array(3,7,8,9,10),		// Orc
+							8	=> array(2,3,8,10),		// Tauren
 					);
 					
 					unset($this->class_dependencies[3]['parent']['class'][5]);
 					unset($this->class_dependencies[4]['parent']['class'][5]);
 				}
-				
+				if($strFaction == 'alliance'){
+					//Without Shaman
+					$this->class_dependencies[2]['parent']['race'] = array(
+							0	=> 'all',							// Unknown
+							1	=> array(4,7,9,10),		// Gnome
+							2	=> array(4,5,6,7,9,10),		// Human
+							3	=> array(3,5,6,7,10),	// Dwarf
+							4	=> array(2,3,6,7,10),		// Night Elf
+							5	=> array(3,4,6,7,10),	// Troll
+							6	=> array(4,6,7,9,10),		// Undead
+							7	=> array(3,7,9,10),		// Orc
+							8	=> array(2,3,10),		// Tauren
+					);
+					
+					unset($this->class_dependencies[3]['parent']['class'][8]);
+					unset($this->class_dependencies[4]['parent']['class'][8]);
+				}
 				
 				return $this->class_dependencies;
 			}
