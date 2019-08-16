@@ -27,7 +27,7 @@ if(!class_exists('wowclassic')) {
 	class wowclassic extends game_generic {
 
 		protected static $apiLevel	= 20;
-		public $version				= '1.0.7';
+		public $version				= '1.0.8';
 		protected $this_game		= 'wowclassic';
 		protected $types			= array('factions', 'races', 'classes', 'talents', 'filters', 'roles', 'classrole', 'professions', 'chartooltip');	// which information are stored?
 		protected $classes			= array();
@@ -751,14 +751,14 @@ if(!class_exists('wowclassic')) {
 								array('name' => $names[9], 'value' => 'class:9'),
 								array('name' => $names[10], 'value' => 'class:10'),
 								array('name' => '-----------', 'value' => false),
-								array('name' => $this->glang('plate', true, $lang), 'value' => 'class:5,10'),
+								array('name' => $this->glang('plate', true, $lang), 'value' => 'class:10'),
 								array('name' => $this->glang('mail', true, $lang), 'value' => 'class:3,8'),
 								array('name' => $this->glang('leather', true, $lang), 'value' => 'class:2,7'),
 								array('name' => $this->glang('cloth', true, $lang), 'value' => 'class:4,6,9'),
 								array('name' => '-----------', 'value' => false),
-								array('name' => $this->glang('tier_token', true, $lang).$names[3].', '.$names[10].', '.$names[8], 'value' => 'class:3,8,10'),
-								array('name' => $this->glang('tier_token', true, $lang).$names[6].', '.$names[9], 'value' => 'class:5,6,9'),
-								array('name' => $this->glang('tier_token', true, $lang).$names[2].', '.$names[4].', '.$names[7], 'value' => 'class:2,4,7'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[8].', '.$names[3].', '.$names[2], 'value' => 'class:8,3,2'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[6].', '.$names[4].', '.$names[9], 'value' => 'class:6,4,9'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[10].', '.$names[7], 'value' => 'class:10,7'),
 						);
 					} elseif(!isset($names[8])){
 						$this->filters[$lang] = array(
@@ -774,13 +774,13 @@ if(!class_exists('wowclassic')) {
 								array('name' => $names[10], 'value' => 'class:10'),
 								array('name' => '-----------', 'value' => false),
 								array('name' => $this->glang('plate', true, $lang), 'value' => 'class:5,10'),
-								array('name' => $this->glang('mail', true, $lang), 'value' => 'class:3,8'),
+								array('name' => $this->glang('mail', true, $lang), 'value' => 'class:3'),
 								array('name' => $this->glang('leather', true, $lang), 'value' => 'class:2,7'),
 								array('name' => $this->glang('cloth', true, $lang), 'value' => 'class:4,6,9'),
 								array('name' => '-----------', 'value' => false),
-								array('name' => $this->glang('tier_token', true, $lang).$names[3].', '.$names[10], 'value' => 'class:3,8,10'),
-								array('name' => $this->glang('tier_token', true, $lang).$names[5].', '.$names[6].', '.$names[9], 'value' => 'class:5,6,9'),
-								array('name' => $this->glang('tier_token', true, $lang).$names[2].', '.$names[4].', '.$names[7], 'value' => 'class:2,4,7'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[5].', '.$names[3].', '.$names[2], 'value' => 'class:5,3,2'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[6].', '.$names[4].', '.$names[9], 'value' => 'class:6,4,9'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[10].', '.$names[7], 'value' => 'class:10,7'),
 						);
 					} else {
 						$this->filters[$lang] = array(
@@ -801,9 +801,9 @@ if(!class_exists('wowclassic')) {
 								array('name' => $this->glang('leather', true, $lang), 'value' => 'class:2,7'),
 								array('name' => $this->glang('cloth', true, $lang), 'value' => 'class:4,6,9'),
 								array('name' => '-----------', 'value' => false),
-								array('name' => $this->glang('tier_token', true, $lang).$names[3].', '.$names[10].', '.$names[8], 'value' => 'class:3,8,10'),
-								array('name' => $this->glang('tier_token', true, $lang).$names[5].', '.$names[6].', '.$names[9], 'value' => 'class:5,6,9'),
-								array('name' => $this->glang('tier_token', true, $lang).$names[2].', '.$names[4].', '.$names[7], 'value' => 'class:2,4,7'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[5].', '.$names[3].', '.$names[2].', '.$names[8], 'value' => 'class:5,3,2,8'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[6].', '.$names[4].', '.$names[9], 'value' => 'class:6,4,9'),
+								array('name' => $this->glang('tier_token', true, $lang).$names[10].', '.$names[7], 'value' => 'class:10,7'),
 						);
 					}
 										
