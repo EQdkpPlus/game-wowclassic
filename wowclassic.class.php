@@ -27,7 +27,7 @@ if(!class_exists('wowclassic')) {
 	class wowclassic extends game_generic {
 
 		protected static $apiLevel	= 20;
-		public $version				= '1.0.8';
+		public $version				= '1.0.9';
 		protected $this_game		= 'wowclassic';
 		protected $types			= array('factions', 'races', 'classes', 'talents', 'filters', 'roles', 'classrole', 'professions', 'chartooltip');	// which information are stored?
 		protected $classes			= array();
@@ -928,6 +928,14 @@ if(!class_exists('wowclassic')) {
 					'size'			=> 32,
 					'undeletable'	=> true,
 					'sort'			=> 1
+			),
+				'servername'	=> array(
+						'category'		=> 'character',
+						'lang'			=> 'servername',
+						'type'			=> 'text',
+						'size'			=> '21',
+						'edecode'		=> true,
+						'sort'			=> 2
 				),
 				'gender'	=> array(
 					'type'			=> 'dropdown',
@@ -1019,6 +1027,34 @@ if(!class_exists('wowclassic')) {
 								'lang'		=> 'uc_wow_extension',
 								'type' 		=> 'dropdown',
 								'options'	=> array('' => 'Classic', 'tbc' => 'The Burning Crusade', 'wotlk' => 'Wrath of the Lich King', 'cata' => 'Cataclysm', 'mop' => 'Mists of Pandaria', 'wod' => 'Warlords of Draenor', 'leg' => 'Legion'),
+						),
+						'uc_server_loc'	=> array(
+								'lang'		=> 'uc_server_loc',
+								'type' 		=> 'dropdown',
+								'options'	=> array('eu' => 'EU', 'us' => 'US', 'tw' => 'TW', 'kr' => 'KR', 'cn' => 'CN'),
+						),
+						'uc_data_lang'	=> array(
+								'lang'		=> 'uc_data_lang',
+								'type' 		=> 'dropdown',
+								'options'	=> array(
+										'en_US' => 'English',
+										'es_MX' => 'Mexican',
+										'pt_BR' => 'Brasil',
+										'en_GB' => 'English (GB)',
+										'es_ES' => 'Spanish',
+										'fr_FR' => 'French',
+										'ru_RU' => 'Russian',
+										'de_DE'	=> 'German',
+										'pt_PT'	=> 'Portuguese',
+										'ko_KR'	=> 'Korean',
+										'zh_TW'	=> 'Taiwanese',
+										'zh_CN'	=> 'Chinese'
+								),
+						),
+						'servername'	=> array(
+								'lang'			=> 'servername',
+								'type'			=> 'text',
+								'size'			=> '21',
 						),
 				);
 				return $settingsdata_admin;
