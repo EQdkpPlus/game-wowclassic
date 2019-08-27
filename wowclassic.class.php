@@ -1031,7 +1031,7 @@ if(!class_exists('wowclassic')) {
 						'uc_server_loc'	=> array(
 								'lang'		=> 'uc_server_loc',
 								'type' 		=> 'dropdown',
-								'options'	=> array('eu' => 'EU', 'us' => 'US', 'tw' => 'TW', 'kr' => 'KR', 'cn' => 'CN'),
+								'options'	=> array('none' => ' - ',  'eu' => 'EU', 'us' => 'US', 'tw' => 'TW', 'kr' => 'KR', 'cn' => 'CN'),
 						),
 						'uc_data_lang'	=> array(
 								'lang'		=> 'uc_data_lang',
