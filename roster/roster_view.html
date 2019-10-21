@@ -1,0 +1,29 @@
+<div id="guild_header_wrap">	
+	<div id="guild_header_banner_{FACTION}">
+		<div id="guild_emblem">
+			<img src="{TABARD}" alt="Guildtabard" class="gameicon" />
+		</div>	
+		<div id="guild_name">{GUILD}</div>
+		<div id="guild_realm">{REGION}-{REALM} &bull; <i class="fa fa-users"></i> {MEMBER_COUNT}</div>
+	</div>
+</div>
+<br clear="left" />
+
+<div id="wow_roster">
+		
+	<div id="roster">
+	
+	<!-- BEGIN class_row -->
+		<div class="roster_class_container" data-level-id="{class_row.CLASS_LEVEL}" <!-- IF class_row.IS_PRIMARY -->data-is-primary="1" data-class-id="{class_row.CLASS_ID}"<!-- ENDIF -->>
+			<h{class_row.CLASS_LEVEL} class="<!-- IF class_row.IS_PRIMARY -->class_{class_row.CLASS_ID}<!-- ENDIF --> level_{class_row.CLASS_LEVEL}">{class_row.CLASS_ICONS} {class_row.CLASS_NAME}</h{class_row.CLASS_LEVEL}>
+			<!-- IF class_row.ENDLEVEL -->
+			<table class="table fullwidth colorswitch hoverrows">
+				{class_row.MEMBER_LIST}
+			</table>
+			<br /><br />
+		</div>
+		<!-- ENDIF -->
+	<!-- END class_row -->
+		</div>
+
+</div>
