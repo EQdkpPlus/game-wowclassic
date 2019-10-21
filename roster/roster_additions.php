@@ -49,13 +49,6 @@ margin-top: 20px;
 			top:20px; 
 			left:15px;
 		}
-		
-		#bar_15088, #bar_15077, #bar_15078, #bar_15079, #bar_15080, #bar_15089, #bar_15093{
-			width: 31%;
-			float: left;
-			padding: 5px;
-			cursor: pointer;
-		}
 	");
 
 $faction = ($this->config->get('faction')) ? $this->config->get('faction') : 'alliance';
@@ -65,9 +58,6 @@ $this->tpl->assign_vars(array(
 		'REALM'			=> $this->config->get('servername'),
 		'REGION'		=> strtoupper($this->config->get('uc_server_loc')),
 		'GUILD'			=> $this->config->get('guildtag'),
-		'ACHIEV_POINTS'	=> (isset($guilddata['achievementPoints'])) ? $guilddata['achievementPoints'] : 0,
-		'L_SKILLS'		=> $this->game->glang('skills'),
-		'L_ACHIEVEMENT_POINTS'	=> $this->game->glang('achievement_points'),
 		'TABARD'		=> $this->server_path.'games/wowclassic/roster/logo-'.$faction.'.png',
 ));
 
