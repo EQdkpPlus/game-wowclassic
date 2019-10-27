@@ -24,7 +24,7 @@ if(!class_exists('wowhead')) {
 		
 		public static $shortcuts = array('puf' => 'urlfetcher');
 		
-		public $av_langs = array('classic' => 'Classic', 'en' => 'en_US', 'de' => 'de_DE', 'fr' => 'fr_FR', 'ru' => 'ru_RU', 'es' => 'es_ES');
+		public $av_langs = array('en' => 'en_US', 'de' => 'de_DE', 'fr' => 'fr_FR', 'ru' => 'ru_RU', 'es' => 'es_ES', 'it' => 'it_IT', 'cn' => 'CN', 'ko' => 'KO', 'pt' => 'PT');
 		
 		public $settings = array(
 				'itt_icon_loc' => array(
@@ -63,7 +63,20 @@ if(!class_exists('wowhead')) {
 			
 			$encoded_name = urlencode($name);
 			$encoded_name = str_replace('+' , '%20' , $encoded_name);
-			$lang_prefix = ($lang == 'en') ? 'www' : $lang;
+			
+			switch($lang){
+				case 'de': $lang_prefix = 'de.classic'; break;
+				case 'fr': $lang_prefix = 'fr.classic'; break;
+				case 'ru': $lang_prefix = 'ru.classic'; break;
+				case 'es': $lang_prefix = 'es.classic'; break;
+				case 'it': $lang_prefix = 'it.classic'; break;
+				case 'cn': $lang_prefix = 'cn.classic'; break;
+				case 'ko': $lang_prefix = 'ko.classic'; break;
+				case 'pt': $lang_prefix = 'pt.classic'; break;
+				
+				case 'en':
+				default: $lang_prefix = 'classic';
+			}
 			
 			//$lang_prefix = "classic";
 			
@@ -190,9 +203,20 @@ if(!class_exists('wowhead')) {
 			}
 			
 			$item = array('id' => $item_id, 'origid' => $orig_id);
-			$url = ($lang == 'en') ? 'www' : $lang;
 			
-			$url = 'classic';
+			switch($lang){
+				case 'de': $url = 'de.classic'; break;
+				case 'fr': $url = 'fr.classic'; break;
+				case 'ru': $url = 'ru.classic'; break;
+				case 'es': $url = 'es.classic'; break;
+				case 'it': $url = 'it.classic'; break;
+				case 'cn': $url = 'cn.classic'; break;
+				case 'ko': $url = 'ko.classic'; break;
+				case 'pt': $url = 'pt.classic'; break;
+				
+				case 'en':
+				default: $url = 'classic';
+			}
 			
 			$item['link'] = 'https://'.$url.'.wowhead.com/tooltip/item/'.$item['id'].'&json&power&bonus='.implode(':', $myItemData['bonus']).'&upgd='.$myItemData['upgd_id'].'&lvl='.$myItemData['lvl'].'&ench='.$myItemData['ench'].'&gems='.implode(',',$myItemData['gems']);
 			
