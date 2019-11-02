@@ -697,6 +697,8 @@ if(!class_exists('wowclassic')) {
 			parent::__construct();
 
 			$this->strStaticIconUrl = $this->config->get('itt_icon_small_loc').'%s'.$this->config->get('itt_icon_ext');
+			
+			$this->pdh->register_read_module($this->this_game, $this->path . 'pdh/read/'.$this->this_game);
 		}
 
 		public function install($blnEQdkpInstall=false){
@@ -720,6 +722,11 @@ if(!class_exists('wowclassic')) {
 			$this->game->addRank(7, "Dummy Rank #3");
 			$this->game->addRank(8, "Dummy Rank #4");
 			$this->game->addRank(9, "Dummy Rank #5");
+			
+			//Columns for Roster
+			$this->pdh->add_object_tablepreset('roster', 'hptt_roster',
+					array('name' => 'wowclassic_charicon', 'sort' => false, 'th_add' => 'width="52"', 'td_add' => '')
+			);
 
 		}
 
@@ -906,15 +913,6 @@ if(!class_exists('wowclassic')) {
 			}
 			
 			
-		}
-
-		public function decorate_classes($class_id, $profile=array(), $size=16, $pathonly=false) {
-			$big = ($size > 40) ? '_b' : '';
-			if(is_file($this->root_path.'games/'.$this->this_game.'/icons/classes/'.$class_id.$big.'.png')){
-				$icon_path = $this->server_path.'games/'.$this->this_game.'/icons/classes/'.$class_id.$big.'.png';
-				return ($pathonly) ? $icon_path : '<img src="'.$icon_path.'" height="'.$size.'" alt="class '.$class_id.'" class="'.$this->this_game.'_classicon classicon'.'" title="'.$this->game->get_name('classes', $class_id).'" />';
-			}
-			return false;
 		}
 
 		public function profilefields(){
