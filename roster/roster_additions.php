@@ -20,35 +20,65 @@
  */
 
 	// Add css code:
-	$this->tpl->add_css("
+$this->tpl->add_css("
 		#guild_header_wrap {
-			width:100%;
-margin-top: 20px;
+			display: flex;
+			-webkit-box-align: center;
+   			-ms-flex-align: center;
+    		align-items: center;
 		}
 		
-		#guild_emblem { 
-			height:120px;
-			margin:-20px 0 0 5px;
-			float:left;
+		#guild_data_wrapper {
+			padding: 0 20px;
+   			border-left: 1px solid rgba(0,0,0,.2);
+			align-self: stretch;
+    		overflow: hidden;
 		}
-		#guild_emblem img{
-			height:100px;
-		} 
+		
+		#guild_emblem, #guild_emblem img {
+			height: 100px;
+		}
+		
+		#guild_name_wrapper {
+			padding: 0 20px;
+		}
 		
 		#guild_name {
-			font-size: 30px; 
-			position:relative; 
-			top:0px; 
-			left:15px;
+			font-size: 2em;
 			font-weight:bold;
 		}
+		
 		#guild_realm {
-			font-size: 20px; 
+			padding-top: 5px;
+			font-size: 1.2em;
 			color: #FFCC33 ;
-			position:relative; 
-			top:20px; 
-			left:15px;
 		}
+		
+		#guild_data_wrapper {
+			color: #FFCC33;
+			-webkit-box-orient: vertical;
+		    -webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		    flex-direction: column;
+		    -webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		    justify-content: center;
+		    display: flex;
+		}
+		
+		.guild_data_container svg {
+			width: 16px;height: 16px;fill: currentColor;
+		}
+		
+		.guild_data_container {
+			margin-right: 20px;
+			display: flex;
+		}
+		
+		#guild_data_wrapper > div {
+			display: flex;
+		}
+		
 	");
 
 $faction = ($this->config->get('faction')) ? $this->config->get('faction') : 'alliance';
