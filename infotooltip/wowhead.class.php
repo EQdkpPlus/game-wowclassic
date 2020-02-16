@@ -91,8 +91,20 @@ if(!class_exists('wowhead')) {
 			if(is_object($xml) && !isset($xml->error)) {
 				$item_id = (int)$xml->item->attributes()->id;
 			} else {
+				$url = 'https://'.$lang_prefix.'.wowhead.com/item='.str_replace(' ', '+', $name).'&xml';
+				$this->pdl->log('infotooltip', 'Search for ItemID at '.$url);
+				$item_data = $this->puf->fetch($url);
+				
+				$xml = simplexml_load_string($item_data);
+				
+				if(is_object($xml) && !isset($xml->error)) {
+					$item_id = (int)$xml->item->attributes()->id;
+				}
+				
 				$this->pdl->log('infotooltip', 'Invalid XML');
 			}
+			
+			
 			
 			//Use normal search
 			if(!$item_id){
