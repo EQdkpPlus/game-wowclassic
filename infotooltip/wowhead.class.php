@@ -112,7 +112,7 @@ if(!class_exists('wowhead')) {
 				$search_data = $this->puf->fetch($url);
 				
 				$arrSearchMatches = array();
-				preg_match_all("/\"id\":([0-9]*),\"level\":([0-9]*),\"name\":\"([0-9])".$itemname."\"/", $search_data, $arrSearchMatches);
+				preg_match_all("/\"id\":([0-9]*),\"level\":([0-9]*),\"name\":\"".$itemname."\"/", $search_data, $arrSearchMatches);
 				
 				if (isset($arrSearchMatches[1]) && count($arrSearchMatches[1])){
 					$arrUniqueIDs = array_unique($arrSearchMatches[1]);
