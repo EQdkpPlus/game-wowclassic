@@ -27,7 +27,7 @@ if(!class_exists('wowclassic')) {
 	class wowclassic extends game_generic {
 
 		protected static $apiLevel	= 20;
-		public $version				= '1.1.4';
+		public $version				= '1.1.5';
 		protected $this_game		= 'wowclassic';
 		protected $types			= array('factions', 'races', 'classes', 'talents', 'filters', 'roles', 'classrole', 'professions', 'chartooltip');	// which information are stored?
 		protected $classes			= array();
@@ -38,6 +38,10 @@ if(!class_exists('wowclassic')) {
 		protected $professions		= array();
 		public $langs				= array('english', 'german');										// in which languages do we have information?
 		public $importers 			= array();
+		
+		public $objects				= array('bnet_armory');												// eventually there are some objects (php-classes) in this game
+		public $no_reg_obj			= array('bnet_armory');												// a list with all objects, which dont need registry
+		
 
 		public $character_unique_ids = array('servername');
 
@@ -1048,6 +1052,14 @@ if(!class_exists('wowclassic')) {
 										'zh_TW'	=> 'Taiwanese',
 										'zh_CN'	=> 'Chinese'
 								),
+						),
+						'game_importer_clientid' => array(
+								'type'			=> 'text',
+								'size'			=> 30,
+						),
+						'game_importer_clientsecret' => array(
+								'type'			=> 'text',
+								'size'			=> 30,
 						),
 						'servername'	=> array(
 								'lang'			=> 'servername',

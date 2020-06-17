@@ -496,6 +496,10 @@ $english_array = array(
 	"minor_glyphs" => 'Minor Glyphs',
 	"core_sett_f_itt_icon_small_loc"=> "URL leading to small icons",
 	"core_sett_f_help_itt_icon_small_loc"	=> "If the URL is unknown, switch parser and back again, to load standard values.",
+	'core_sett_f_game_importer_clientid' => 'API Client-ID',
+	'core_sett_f_help_game_importer_clientid' => 'Create a free application at the <a href="https://dev.battle.net" target="_blank">Battle.net Developer Portal</a> and insert here the Client-ID of the app.',
+	'core_sett_f_game_importer_clientsecret' => 'API Client-Secret',
+			
 	),
 
 );
