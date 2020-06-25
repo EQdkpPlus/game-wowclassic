@@ -425,7 +425,7 @@ class bnet_armory extends gen_class {
 		}
 
 		$this->check_access_tocken();
-		$realm		= $this->createSlug($realm);
+		$realm		= $this->translateRealmToSlug($realm);
 		$user		= $this->ConvertInput(utf8_strtolower($user));
 		$wowurl		= $this->_config['apiUrl'].sprintf('profile/wow/character/%s/%s%s?namespace=%s&locale=%s&access_token=%s', $realm, $user, $parameter, $this->getWoWNamespace(), $this->_config['locale'], $this->_config['access_token']);
 
@@ -501,8 +501,8 @@ class bnet_armory extends gen_class {
 	* @return string
 	*/
 	public function characterIcon($user, $realm, $type='icon', $force=false){
-		$realm		= $this->createSlug($realm);
-		$user		= $this->ConvertInput(strtolower($user));
+		$realm		= $this->translateRealmToSlug($realm);
+		$user		= $this->ConvertInput(utf8_strtolower($user));
 		$chardata	= $this->character_singlefeed($user, $realm, 'media', $force);
 
 		//Default icon for unknown chars
@@ -593,8 +593,8 @@ class bnet_armory extends gen_class {
 	*/
 	public function guildRoster($guild, $realm, $force=false){
 		$this->check_access_tocken();
-		$realm = $this->createSlug($realm);
-		$guild	=  $this->translateRealmToSlug($guild);
+		$realm = $this->translateRealmToSlug($realm);
+		$guild	=  $this->createSlug($guild);
 
 		$wowurl	= $this->_config['apiUrl'].sprintf('data/wow/guild/%s/%s/roster?namespace=%s&locale=%s&access_token=%s', $realm, $guild, $this->getWoWNamespace(),$this->_config['locale'], $this->_config['access_token']);
 		$this->_debug('Guild: '.$wowurl);
@@ -623,8 +623,8 @@ class bnet_armory extends gen_class {
 	 */
 	public function guildActivity($guild, $realm, $force=false){
 		$this->check_access_tocken();
-		$realm = $this->createSlug($realm);
-		$guild	=  $this->translateRealmToSlug($guild);
+		$realm = $this->translateRealmToSlug($realm);
+		$guild	=  $this->createSlug($guild);
 		
 		$wowurl	= $this->_config['apiUrl'].sprintf('data/wow/guild/%s/%s/activity?namespace=%s&locale=%s&access_token=%s', $realm, $guild, $this->getWoWNamespace(),$this->_config['locale'], $this->_config['access_token']);
 		$this->_debug('Guild: '.$wowurl);
@@ -653,8 +653,8 @@ class bnet_armory extends gen_class {
 	 */
 	public function guild($guild, $realm, $force=false){
 		$this->check_access_tocken();
-		$realm = $this->createSlug($realm);
-		$guild	=  $this->translateRealmToSlug($guild);
+		$realm = $this->translateRealmToSlug($realm);
+		$guild	=  $this->createSlug($guild);
 		
 		$wowurl	= $this->_config['apiUrl'].sprintf('data/wow/guild/%s/%s?namespace=%s&locale=%s&access_token=%s', $realm, $guild, $this->getWoWNamespace(),$this->_config['locale'], $this->_config['access_token']);
 		$this->_debug('Guild: '.$wowurl);
@@ -683,8 +683,8 @@ class bnet_armory extends gen_class {
 	 */
 	public function guildAchievements($guild, $realm, $force=false){
 		$this->check_access_tocken();
-		$realm = $this->createSlug($realm);
-		$guild	=  $this->translateRealmToSlug($guild);
+		$realm = $this->translateRealmToSlug($realm);
+		$guild	=  $this->createSlug($guild);
 		
 		$wowurl	= $this->_config['apiUrl'].sprintf('data/wow/guild/%s/%s/achievements?namespace=%s&locale=%s&access_token=%s', $realm, $guild, $this->getWoWNamespace(),$this->_config['locale'], $this->_config['access_token']);
 		$this->_debug('Guild: '.$wowurl);
@@ -838,7 +838,7 @@ class bnet_armory extends gen_class {
 	* @return bol
 	*/
 	public function realm($realm, $force=false){
-		$realm = $this->createSlug($realm);
+		$realm = $this->translateRealmToSlug($realm);
 		
 		$this->check_access_tocken();
 		$wowurl = $this->_config['apiUrl'].sprintf('/data/wow/realm/%s?namespace=%s&locale=%s&access_token=%s', $realm, $this->getWoWNamespace('dynamic'), $this->_config['locale'], $this->_config['access_token']);
@@ -1340,7 +1340,15 @@ class bnet_armory extends gen_class {
 	public function ConvertInput($input, $removeslash=false, $removespace=false){
 		// new servername convention: mal'ganis = malganis
 		$input = ($removespace) ? str_replace(" ", "-", $input) : $input;
-		return ($removeslash) ? stripslashes(str_replace("'", "", $input)) : stripslashes(rawurlencode($input));
+		if($removeslash){
+			return stripslashes(str_replace("'", "", $input));
+		} else {
+			if(strpos($input, "%") === false){
+				$input = rawurlencode($input);
+			}
+			
+			return stripslashes($input);
+		}
 	}
 
 	
