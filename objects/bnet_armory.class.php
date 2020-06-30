@@ -501,9 +501,14 @@ class bnet_armory extends gen_class {
 	* @return string
 	*/
 	public function characterIcon($user, $realm, $type='icon', $force=false){
+		$_realm = $realm;
+		$_user = $user;
+		
 		$realm		= $this->translateRealmToSlug($realm);
 		$user		= $this->ConvertInput(utf8_strtolower($user));
-		$chardata	= $this->character_singlefeed($user, $realm, 'media', $force);
+		
+		#use the plain values here, as character_singlefeed will convert them
+		$chardata	= $this->character_singlefeed($_user, $_realm, 'media', $force);
 
 		//Default icon for unknown chars
 		if(!$chardata){
@@ -514,7 +519,7 @@ class bnet_armory extends gen_class {
 		$img_charicon	= $this->get_CachedData('img_'.$type.'_'.$user.$realm, false, true);
 		$img_charicon_sp= $this->get_CachedData('img_'.$type.'_'.$user.$realm, false, true, false, true);
 
-		if(!$img_charicon && ($forceUpdateAll || ($this->chariconUpdates < $this->_config['maxChariconUpdates']))){
+		if(!$img_charicon && ($force || ($this->chariconUpdates < $this->_config['maxChariconUpdates']))){
 			switch($type){
 				case 'icon':	$image_url = $chardata['avatar_url']; 	break;
 				case 'render':	$image_url = $chardata['render_url']; 	break;
@@ -899,6 +904,7 @@ class bnet_armory extends gen_class {
 	 */
 	public function translateRealmToSlug($strRealm){
 		$realmList = $this->realmlist();
+		$strRealm = unsanitize($strRealm);
 		
 		$slug = $this->createSlug($strRealm);
 		
