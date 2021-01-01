@@ -1096,6 +1096,18 @@ if(!class_exists('wowclassic')) {
 						
 						$this->{$type}[$lang] = $this->lang_file[$lang][$type.'_'.$strExtension];
 
+					} elseif($type == 'professions') {
+					    $strExtension = $this->config->get('uc_wow_extension');
+					    if (! $strExtension || $strExtension == "") {
+					        $this->{$type}[$lang] = $this->lang_file[$lang][$type];
+					        unset($this->lang_file[$lang][$type]['inv_inscription_tradeskill01']);
+					        unset($this->lang_file[$lang][$type]['inv_misc_gem_01']);
+					        unset(  $this->{$type}[$lang]['inv_inscription_tradeskill01']);
+					        unset(  $this->{$type}[$lang]['inv_misc_gem_01']);
+					    } else {
+					        $this->{$type}[$lang] = $this->lang_file[$lang][$type];
+					    }
+					    
 					} else {
 						$this->{$type}[$lang] = $this->lang_file[$lang][$type];
 					}
